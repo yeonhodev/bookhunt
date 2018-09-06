@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Bookhunt</title>
-  </head>
-  <body>
-    <h1>Welcome to Bookhunt!</h1>
-  </body>
-</html>
+{% extends "layout.html" %}
+
+{% block heading %}
+  <h1>{{ headline }}</h1>
+{% endblock %}
+
+{% block body %}
+  <h2>Today is {{ today }}.</h2>
+
+  {% if weekend %}
+  <h2>It's a weekend!</h2>
+  {% else %}
+  <h2>It's a weekday!</h2>
+  {% endif %}
+
+  <a href="{{ url_for('names') }}">Go to List of Names</a>
+  <a href="{{ url_for('flights') }}">Go to List of Flights</a>
+
+  <form action="{{ url_for('hello') }}" method="post">
+    <input type="text" name="name" placeholder="Enter Your Name">
+    <button type="button">Submit</button>
+  </form>
+{% endblock %}
