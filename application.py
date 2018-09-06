@@ -46,7 +46,7 @@ def hello():
 
 @app.route("/flights", methods=["GET"])
 def flights():
-    flights = db.execute("SELECT origin, destination, duration FROM flights").fetchall()
+    flights = db.execute("SELECT * FROM flights").fetchall()
     return render_template("flights.html", flights=flights)
 
 @app.route("/book", methods=["POST"])
@@ -54,7 +54,7 @@ def book():
     """Book a flight."""
 
     # Get form information.
-    name = requet.form.get("name")
+    name = request.form.get("name")
     try:
         flight_id = int(request.form.get("flight_id"))
     except ValueError:
