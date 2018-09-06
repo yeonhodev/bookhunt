@@ -44,10 +44,14 @@ def hello():
     name = request.form.get("name")
     return render_template("hello.html", name=name)
 
-@app.route("/flights", methods=["GET", "POST"])
+@app.route("/flights", methods=["GET"])
 def flights():
     flights = db.execute("SELECT origin, destination, duration FROM flights").fetchall()
     return render_template("flights.html", flights=flights)
+
+@app.route("/book", methods=["POST"])
+def book():
+    """Book a flight."""
 
 @app.route("/bye")
 def bye():
